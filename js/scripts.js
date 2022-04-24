@@ -39,3 +39,21 @@ function Contact(firstName, lastName, phoneNumber) {
 Contact.prototype.fullName = function () {
   return this.firstName + " " + this.lastName;
 };
+
+// User Interface Logic ---------
+
+// this variable is up here to mimic a database.
+let addressBook = new AddressBook()
+
+$(document).ready(function () {
+  $('form#new-contact').submit(function (event) {
+    event.preventDefault()
+    const inputtedFirstName = $('input#new-first-name').val()
+    const inputtedLastName = $('input#new-last-name').val()
+    const inputtedPhoneNumber = $('input#new-phione-number').val()
+    let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber)
+
+    addressBook.addContact(newContact)
+    console.log(addressBook.contacts)
+  })
+})
